@@ -1,5 +1,6 @@
 import copy
 import numpy as np
+import math
 
 class Individual:
     def __init__(self, allels, chromosome):
@@ -49,9 +50,13 @@ class GeneticAlgorithm:
             i._fitness = self._problem.f(i._chromosome)
             if i._fitness > self._most_fit._fitness:
                 self._most_fit = copy.deepcopy(i)
+        self.population = sorted(self.population, key= lambda i: i._fitness)
 
     def selectRandom(self):
-        return np.random.randint(len(self.population))
+        upper_limit = len(self.population)
+        lower_limit = math.floor(upper_limit / 2)
+
+        return np.random.randint(lower_limit, upper_limit)
 
     def breed(self, i1, i2):
         h1 = copy.deepcopy(i1)

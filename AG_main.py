@@ -1,5 +1,5 @@
 import knapsack
-import AG
+import GeneticAlgorithm
 
 def main():
     pesos =     [22, 14, 16, 23, 12, 15, 22, 6,  19, 20, 40, 8,  16, 6, 15, 21, 16]

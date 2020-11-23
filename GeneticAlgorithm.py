@@ -22,7 +22,7 @@ class GeneticAlgorithm:
         self._most_fit = self.population[0]
         generation = 1
         while generation <= self._generations:
-            self.evaluatePopulation()
+            self.evaluatePopulation(generation)
             children = np.array([])
             while len(children) < len(self.population):
                 parent1 = self.selectRandom()
@@ -35,8 +35,7 @@ class GeneticAlgorithm:
             self.mutate(children)
             self.population = np.copy(children)
             self.population[np.random.randint(len(self.population))] = copy.deepcopy(self._most_fit)
-            if generation % 100 == 0:
-                print("Generación: ", generation, 'Mejor Histórico: ', self._most_fit._chromosome, self._most_fit._fitness)
+                
             generation += 1
 
     def pupulate(self):
@@ -45,11 +44,12 @@ class GeneticAlgorithm:
             individuo = Individual(self._allels, chromosome)
             self.population = np.append(self.population, [individuo])
 
-    def evaluatePopulation(self):
+    def evaluatePopulation(self, generation):
         for i in self.population:
             i._fitness = self._problem.f(i._chromosome)
             if i._fitness > self._most_fit._fitness:
                 self._most_fit = copy.deepcopy(i)
+                print("Generación: ", generation, 'Mejor Histórico: ', self._most_fit._chromosome, self._most_fit._fitness)
         self.population = sorted(self.population, key= lambda i: i._fitness)
 
     def selectRandom(self):

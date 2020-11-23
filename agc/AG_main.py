@@ -25,13 +25,13 @@ def main():
     quartic_problem = quartic.Quartic()
     rosenbrock_problem = rosenbrock.Rosenbrock()
     # allels = 2
-    population_size = 32
+    population_size = 16
     generations = 2000
     mutation_rate = 0.1
     for allels in [2, 4, 8]:
         raw_sets = []
         for i in range(5):
-            ag = GeneticAlgorithm.GeneticAlgorithm(population_size, allels, generations, mutation_rate, quartic_problem)
+            ag = GeneticAlgorithm.GeneticAlgorithm(population_size, allels, generations, mutation_rate, rastrigin_problem)
             
             raw_sets.append(ag.run())
         print(zip_average(raw_sets), allels)

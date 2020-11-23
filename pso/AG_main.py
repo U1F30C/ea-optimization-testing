@@ -24,7 +24,7 @@ def main():
     rastrigin_problem = rastrigin.Rastrigin()
     quartic_problem = quartic.Quartic()
     rosenbrock_problem = rosenbrock.Rosenbrock()
-    population_size = 8
+    population_size = 16
     generations = 2000
     mutation_rate = 0.1
     for dimentions in [2, 4, 8]:
